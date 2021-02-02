@@ -1,7 +1,7 @@
 <template>
   <div class="goodListitem" @click="goodsclick">
     <!-- @load加载完毕 -->
-    <img :src="showimg" alt="" @load="imgok">
+    <img v-lazy="showimg" alt="" @load="imgok">
     <div class="info">
       <p >{{items.title}}</p>
       <span class="price">{{items.price}}</span>
@@ -25,6 +25,8 @@ export default {
     showimg(){
       if(this.items.image){
         return this.items.image 
+      }if(this.items.img){
+        return this.items.img 
       }else{
         return this.items.show.img
       }

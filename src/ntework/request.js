@@ -18,7 +18,7 @@ export function request(config) {
     // 3.某些网络请求(比如登录(token)), 必须携带一些特殊的信息
     return config
   }, err => {
-    // console.log(err);
+    console.log(err);
   })
 
   // 2.2.响应拦截
