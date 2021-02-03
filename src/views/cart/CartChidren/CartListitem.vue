@@ -1,21 +1,28 @@
 <template>
   <div class="cartistitem">
+
     <div class="item-content">
+
       <div >
         <cheak-box  :class="{cheakbox : listdata.cheak}" @click.native="cheakclick"></cheak-box>
       </div>
+
       <div>
         <img :src="listdata.image" alt="" />
       </div>
+
       <div class="item-right">
+
         <div class="item-title">
           <p class="first">{{ listdata.title }}</p>
           <p class="second">{{ listdata.desc }}</p>
         </div>
+
         <div class="item-price">
           <span class="item-finprice">{{ finprice }}</span>
           <span >x{{ listdata.count }}</span>
         </div>
+
       </div>
     </div>
   </div>
@@ -35,6 +42,7 @@ export default {
   },
   methods:{
     cheakclick(){
+      console.log(this.listdata);
       this.listdata.cheak = !this.listdata.cheak
     }
   },

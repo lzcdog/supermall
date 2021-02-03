@@ -16,22 +16,15 @@
 </template>
 
 <script>
-import CheakBox from '@/components/content/cheakbox/CheakBox'
 import Toast from '@/components/common/toast/Toast'
-import {mapGetters} from 'vuex'
+import {cheackbox} from '@/common/mixin'
 export default {
   name:"CartBotBar",
   components:{
-    CheakBox,
     Toast
   },
-  data(){
-    return{
-      cheakbol:false
-    }
-  },
+  mixins:[cheackbox],
   computed:{
-    ...mapGetters(['cartList']),
     cheakPrice(){
       return '￥'+this.cartList.filter(item =>{
         return item.cheak
@@ -42,26 +35,8 @@ export default {
     cheaklength(){
       return this.cartList.filter(item => item.cheak).length
     },
-    cheakok(){
-            let test =0
-        this.cartList.map(item => {
-          if(item.cheak == false ){
-              test+=1
-          }
-          if(test ==0 ){
-            return this.cheakbol = true
-          }else{
-            return this.cheakbol = false
-          }
-        })
-    }
   },
   methods:{
-    allcheak(){
-        this.cartList.map(item =>{
-          return item.cheak = !this.cheakbol
-        })
-    },
     sumclick(){
       if(this.cartList.filter(item => item.cheak).length==0){
         this.$refs.toast.show('请选择商品',2000)
@@ -69,6 +44,11 @@ export default {
         this.$refs.toast.show('当前价格为'+this.cheakPrice,2000)
     }
   }
+  },
+  mounted(){
+    this.$bus.$on("synccheakbol",(cheakbol)=>{
+      this.cheakbol = cheakbol
+    })
   }
 }
 </script>
