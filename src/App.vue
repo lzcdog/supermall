@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    12134
     <keep-alive exclude="Detail">
       <router-view></router-view>
     </keep-alive>
